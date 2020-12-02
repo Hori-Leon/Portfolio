@@ -1,0 +1,42 @@
+﻿<Window x:Class="Portfolio.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Portfolio"
+        xmlns:Pages="clr-namespace:Portfolio.Pages"
+        xmlns:PagesVM="clr-namespace:Portfolio.Pages.Viewmodels"
+        xmlns:Widgets="clr-namespace:Portfolio.Widgets"
+        xmlns:WidgetsVM="clr-namespace:Portfolio.Widgets.Viewmodels"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" WindowState="Maximized" WindowStyle="None">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type PagesVM:ChartDemoPageViewmodel}">
+            <Pages:ChartDemoPage/>
+        </DataTemplate>
+    </Window.Resources>
+    
+    <DockPanel>
+        <materialDesign:ColorZone DockPanel.Dock="Top"  Mode="PrimaryDark" Margin="0,0,-0.4,0">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal">
+                    <ContentControl Content="{Binding PopupPt_1}">
+                        <ContentControl.ContentTemplate>
+                            <DataTemplate DataType="{x:Type WidgetsVM:PopupMenuViewmodel}">
+                                <Widgets:PopupMenu/>
+                            </DataTemplate>
+                        </ContentControl.ContentTemplate>
+                    </ContentControl>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:ColorZone>
+        <ProgressBar DockPanel.Dock="Bottom"/>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" />
+            <TextBlock Text="TEST TXT" FontSize="15" FontWeight="Bold" Margin="0,5" />
+        </StackPanel>
+        <ContentControl  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding CurrentPageViewModel}" />
+    </DockPanel>
+</Window>
